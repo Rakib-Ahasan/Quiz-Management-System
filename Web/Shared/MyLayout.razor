@@ -1,0 +1,54 @@
+﻿@namespace Web
+@using RapidFireLib.UX.Style
+@using RapidFireLib.View.Models
+@inherits LayoutComponentBase
+@attribute [AllowAnonymous]
+<LayoutRF>
+    <LayoutHeaderRF IgnoreDefaults=true>
+        <LayoutHeaderLeftPanel>
+            <LayoutHeaderIcon OnClick="gotoLink" />
+        </LayoutHeaderLeftPanel>
+        <LayoutHeaderCenterPanel>
+            <LayoutHeaderMenu Items="MenuItems" />
+        </LayoutHeaderCenterPanel>
+        <LayoutHeaderRightPanel>
+            <LayoutHeaderPortalAction RouteOnLogin="/home" />
+        </LayoutHeaderRightPanel>
+    </LayoutHeaderRF>
+
+    <LayoutBodyRF>
+        @Body
+    </LayoutBodyRF>
+
+
+    <LayoutFooterRF Type="RapidFireUI.Style.LayoutFooterType.Thin" />
+</LayoutRF>
+
+@code {
+    void MenuItems(List<AppResource> menu)
+    {
+        #region Dashboard
+        var dashboard = menu.AddRoot("Dashboard");
+
+        var dashboard1 = dashboard.AddChild("Dashboard C1");
+        dashboard1.AddChild("Dashboard Main", "/", "fa fa-home", MenuPosition.Left);
+        dashboard1.AddChild("Counter", "/counter", "fa fa-home", MenuPosition.Left);
+        #endregion
+
+        #region Home
+        var home = menu.AddRoot("", "/", "fa fa-home");
+        home.AddChild("Home Live", "/home", "fa fa-user");
+        var home2 = home.AddChild("Home C2", "", "fa fa-user");
+        home2.AddChild("Home C2.1", "/home2_1", "fa fa-user");
+        home2.AddChild("Home C2.2", "/home2_2", "fa fa-user");
+        #endregion
+
+        #region Report
+        menu.AddRoot("Report", "/report", "fa-solid fa-chart-pie"); //has no child
+        #endregion
+    }
+    void gotoLink()
+    {
+        nav.NavigateTo("/");
+    }
+}

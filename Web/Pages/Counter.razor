@@ -1,0 +1,26 @@
+﻿@page "/counter"
+@using RapidFireLib.View.UserInfo;
+@using RapidFireUI;
+@inject IUserInfo user
+@attribute [AllowAnonymous]
+@layout MyLayout
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<AuthorizeView>
+    Hi, @user.User?.FullName
+</AuthorizeView>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    int currentCount { get; set; }
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
