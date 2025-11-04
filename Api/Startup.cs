@@ -1,4 +1,5 @@
 ﻿using Api.Config;
+using Domain.Handlers.QuizHandler;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +23,10 @@ namespace API
         {
             services.AddRapidFire(new AppConfig());
 
+            // Register your custom handlers (Domain services)
+            services.AddScoped<IQuizHandler, QuizHandler>();
+            services.AddScoped<IResultHandler, ResultHandler>();
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllOrigins",
@@ -30,10 +35,10 @@ namespace API
                     builder.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
                 });
             });
-            //services.AddAuthentication(x =>
+            //services.addauthentication(x =>
             //{
-            //    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    x.defaultauthenticatescheme = jwtbearerdefaults.authenticationscheme;
+            //    x.defaultchallengescheme = jwtbearerdefaults.authenticationscheme;
             //});
             services.AddMvc(options => options.EnableEndpointRouting = false);
         }

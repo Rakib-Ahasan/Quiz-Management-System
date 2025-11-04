@@ -2,8 +2,18 @@ using RapidFireLib;
 using RapidFireLib.Extensions;
 using RapidFireUI;
 using Web.Config;
+using Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Register HTTP client for API calls
+builder.Services.AddHttpClient<QuizApiService>(client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"] ?? "https://localhost:7001");
+});
+
+
+builder.Services.AddScoped<QuizApiService>();
 
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();

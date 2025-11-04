@@ -3,6 +3,7 @@ using System;
 using Domain.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Domain.Migrations
 {
     [DbContext(typeof(DefaultContext))]
-    partial class DefaultContextModelSnapshot : ModelSnapshot
+    [Migration("20251104161035_CreateAllEnities")]
+    partial class CreateAllEnities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -687,7 +690,7 @@ namespace Domain.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 11, 4, 16, 10, 31, 945, DateTimeKind.Utc).AddTicks(1370),
                             Description = "Test your knowledge of C# basics",
                             DurationInMinutes = 30,
                             EnableNegativeMarking = false,
@@ -701,7 +704,7 @@ namespace Domain.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 11, 4, 16, 10, 31, 945, DateTimeKind.Utc).AddTicks(1892),
                             Description = "Advanced concepts in ASP.NET Core",
                             DurationInMinutes = 45,
                             EnableNegativeMarking = true,
