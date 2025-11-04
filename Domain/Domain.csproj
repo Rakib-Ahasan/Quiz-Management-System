@@ -5,6 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="RapidFireUI"  Version="8.*"/>
+    <PackageReference Include="RapidFireUI" Version="8.*" />
   </ItemGroup>
 </Project>
